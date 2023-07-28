@@ -7,8 +7,28 @@ const CartProvider = ({children})=> {
   const [cart, setCart] = useState([])
 
 const addToCart = ( product, id) =>{
-    console.log(`${product.title} added to the cart ${id}`)
+  const newItem = {...product, amount: 1}
+  //check if the item is already in the cart
+  const cartItem = cart.filter(item=>{
+    return item.id ==id;
+  })
+  //if cart item is already in the cart
+  if(cartItem){
+    const newCart = [...cart].map((item)=>{
+      if(item.id===id) {
+        return {...item, amount: cartItem.amount + 1 }
+      }
+      else{
+        return item;
+      }
+    });
+    setCart(newCart)
+  } else {
+    setCart([...cart, newItem])
   }
+  }
+
+  console.log(cart)
   return (
     <CartContext.Provider value={ {addToCart} }>
       {children}

@@ -13,7 +13,6 @@ import { CartContext } from '../contexts/CartContext'
 
 export default function Sidebar() {
   const {isOpen, handleClose} = useContext(SidebarContext);
-  console.log(useContext(CartContext));
   return (
     <div className={`${isOpen ? 'right-0' : '-right-full'}  w-full bg-white fixed top-0 shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px]`}>
       <div className='flex justify-center items-center py-6 border-b'>
