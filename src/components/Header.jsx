@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <div>
       <div className='bg-pink-200'>Header</div>
-      <div onClick={()=>setIsOpen(!isOpen)} className='cursor-pointer flex relative '>
+      <div onClick={() => setIsOpen(!isOpen)} className='cursor-pointer flex relative '>
         <BsBag className='text-2xl'/>
       </div>
     </div>
