@@ -1,68 +1,76 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 //import icons
-import { IoMdAdd, IoMdClose, IoMdRemove } from 'react-icons/io'
+import { IoMdAdd, IoMdClose, IoMdRemove } from "react-icons/io";
 //import cart context
-import { CartContext } from '../contexts/CartContext'; 
+import { CartContext } from "../contexts/CartContext";
 
-const CartItem = ( {item} ) => {
-  const { removeFromCart, increaseAmount, decreaseAmount } = useContext(CartContext)
+const CartItem = ({ item }) => {
+  const { removeFromCart, increaseAmount, decreaseAmount } =
+    useContext(CartContext);
   //destructuring items
   const { id, title, image, price, amount } = item;
   return (
-    <div className='flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500'>
-      <div className='w-full min-h-[150px] flex items-center gap-x-4'>
+    <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
+      <div className="w-full min-h-[150px] flex items-center gap-x-4">
         {/* image */}
         <Link to={`/product/${id}`}>
-          <img className='max-w-[80px]' src={image} alt="" />
+          <img className="max-w-[80px]" src={image} alt="" />
         </Link>
-        <div className='w-full flex flex-col'>
+        <div className="w-full flex flex-col">
           {/* title and remove icon */}
-          <div className='flex justify-between mb-2'>
+          <div className="flex justify-between mb-2">
             {/* title */}
-            <Link to={`/product/${id}`}
-                  className='text-sm uppercase font-medium max-w-[240px] text-black hover:underline'>
+            <Link
+              to={`/product/${id}`}
+              className="text-sm uppercase font-medium max-w-[240px] text-black hover:underline"
+            >
               {title}
             </Link>
             {/* remove icons */}
-            <div onClick={ ()=>removeFromCart(id) } className='text-xl cursor-pointer'>
-              <IoMdClose className='text-gray-500 hover:text-red-500 transition'/>
+            <div
+              onClick={() => removeFromCart(id)}
+              className="text-xl cursor-pointer"
+            >
+              <IoMdClose className="text-gray-500 hover:text-red-500 transition" />
             </div>
           </div>
-          <div className='flex gap-x-2 h-[36px] text-sm'>
+          <div className="flex gap-x-2 h-[36px] text-sm">
             {/* quantity */}
-            <div className='flex flex-1 max-w-[100px] items-center h-full border text-black font-medium'>
+            <div className="flex flex-1 max-w-[100px] items-center h-full border text-black font-medium">
               {/* minus icon */}
-              <div 
-                onClick={()=> decreaseAmount(id)}
-                className='flex-1 flex justify-center items-center cursor-pointer h-full'>
-                <IoMdRemove/>
+              <div
+                onClick={() => decreaseAmount(id)}
+                className="flex-1 flex justify-center items-center cursor-pointer h-full"
+              >
+                <IoMdRemove />
               </div>
               {/* amount */}
-              <div className='h-full flex justify-center items-center px-2'>
+              <div className="h-full flex justify-center items-center px-2">
                 {amount}
               </div>
               {/* plus icon */}
               <div
-                onClick={()=>increaseAmount(id)}
-                className='flex-1 h-full flex justify-center items-center cursor-pointer'>
-                <IoMdAdd/>
+                onClick={() => increaseAmount(id)}
+                className="flex-1 h-full flex justify-center items-center cursor-pointer"
+              >
+                <IoMdAdd />
               </div>
             </div>
             {/* items price */}
-            <div className='flex-1 flex justify-around items-center'>
+            <div className="flex-1 flex justify-around items-center">
               Taka: {price}
             </div>
             {/* final price */}
             {/* make the price at 2 decimals */}
-            <div className='flex-1 flex justify-end items-center text-black font-medium'>
-              {`${parseFloat( price * amount ).toFixed(2)}`}
+            <div className="flex-1 flex justify-end items-center text-black font-medium">
+              {`${parseFloat(price * amount).toFixed(2)}`}
             </div>
           </div>
-        </div>       
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default CartItem;
